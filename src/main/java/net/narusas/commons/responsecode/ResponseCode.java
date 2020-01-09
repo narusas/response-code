@@ -1,7 +1,11 @@
 package net.narusas.commons.responsecode;
 
 
-public interface ResponseCode {
+import java.util.regex.Pattern;
+
+public interface ResponseCode<T> extends CodeType {
+
+
     /**
      * SUCCESS, FAIL, ERROR 타입을 반환한다
      *
@@ -14,9 +18,13 @@ public interface ResponseCode {
      *
      * @return
      */
+    @Override
     String getCode();
 
-    BusinessType getBusinessType();
+    @Override
+    String getDescription();
+
+    T getGroup();
 
     /**
      * 응답 번호를 반환한다. 오류번호가 1로 시작하면 SUCCESS, 4로 시작하면 FAIL, 5로 시작하면 ERROR 인 응답이다
@@ -60,6 +68,8 @@ public interface ResponseCode {
      */
     void throwException();
 
+    void throwException(String overrideMessage);
+
     /**
      * getMessage(Object... args) 에 넘길 인자를 같이 받는다.
      */
@@ -74,6 +84,7 @@ public interface ResponseCode {
      * 다른 예외를 감싸서 예외로 발생시킨다.
      */
     void throwException(Throwable throwable, Object... args);
+
 
 
 }

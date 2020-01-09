@@ -2,9 +2,8 @@ package net.narusas.commons.responsecode;
 
 /**
  * 에러 종류 정의.
- *
+ * <p>
  * JSend 표준에서 가져온 형태
- *
  */
 public enum ResponseType {
     /**
